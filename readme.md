@@ -1,3 +1,4 @@
+**UWAGA** WERSJA ROBOCZA! Dokumentacja poniżej w dużej mierze napisana przez AI i nie weryfikowana!
 
 # 1) Pomysł w pigułce
 
