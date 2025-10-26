@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+    container_name: jupyter
+    command: start-notebook.sh --NotebookApp.token=''
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./project:/home/jovyan/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    networks:
+      - data-net
+
+networks:
+  data-net:
+    external: true

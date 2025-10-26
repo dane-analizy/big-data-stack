@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  namenode:
+    image: apache/hadoop:3
+    container_name: namenode
+    hostname: namenode
+    command: ["hdfs", "namenode"]
+    ports:
+      - "9870:9870" # NameNode Web UI
+      - "9000:9000" # HDFS RPC
+    volumes:
+      - ./data/namenode:/hadoop/dfs/name
+      - ./hadoop-config:/opt/hadoop/etc/hadoop
+    networks:
+      - data-net
+
+  datanode:
+    image: apache/hadoop:3
+    container_name: datanode
+    hostname: datanode
+    command: ["hdfs", "datanode"]
+    volumes:
+      - ./data/datanode:/hadoop/dfs/data
+      - ./hadoop-config:/opt/hadoop/etc/hadoop
+    networks:
+      - data-net
+
+  resourcemanager:
+    image: apache/hadoop:3
+    container_name: resourcemanager
+    hostname: resourcemanager
+    command: ["yarn", "resourcemanager"]
+    ports:
+      - "8088:8088" # YARN Web UI
+    networks:
+      - data-net
+
+  nodemanager:
+    image: apache/hadoop:3
+    container_name: nodemanager
+    hostname: nodemanager
+    command: ["yarn", "nodemanager"]
+    networks:
+      - data-net
+
+networks:
+  data-net:
+    external: true

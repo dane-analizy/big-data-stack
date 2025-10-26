@@ -1,0 +1,6 @@
+nifi/data/
+mongo/data/
+kafka/data/
+jupyter/project/
+hadoop/data/
+
