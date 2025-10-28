@@ -28,3 +28,20 @@ echo "======================================="
 echo "🔧 Starting HDFS NameNode Service..."
 echo "======================================="
 hdfs namenode
+
+# Wait until HDFS is up and running
+wait_for_hdfs
+
+# Setup default user directory
+HDFS_USER="dr.who"
+echo "======================================="
+echo "🛠 Setting up HDFS directory for user: $HDFS_USER"
+echo "======================================="
+
+# Create /user and /user/dr.who if they don't exist
+hdfs dfs -chown $HDFS_USER:supergroup /
+hdfs dfs -chmod 755 /
+
+
+# Keep NameNode process in foreground
+wait
