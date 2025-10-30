@@ -5,28 +5,30 @@ services:
     image: apache/hadoop:3
     container_name: namenode
     hostname: namenode
-    command: [ "/bin/bash", "/start-hdfs.sh" ]
+    command: ["/bin/bash", "/start-hdfs.sh"]
     ports:
       - "9870:9870" # NameNode Web UI
       - "9000:9000" # HDFS RPC
     volumes:
-      - ./data/namenode:/hadoop/dfs/name
+      - namenode-data:/hadoop/dfs/name
       - ./hadoop-config:/opt/hadoop/etc/hadoop
       - ./start-hdfs.sh:/start-hdfs.sh
     networks:
       - data-net
+    user: root
 
   datanode:
     image: apache/hadoop:3
     container_name: datanode
     hostname: datanode
-    command: [ "/bin/bash", "/init-datanode.sh" ]
+    command: ["/bin/bash", "/init-datanode.sh"]
     volumes:
-      - ./data/datanode:/hadoop/dfs/data
+      - datanode-data:/hadoop/dfs/data
       - ./hadoop-config:/opt/hadoop/etc/hadoop
       - ./init-datanode.sh:/init-datanode.sh
     networks:
       - data-net
+    user: root
 
   resourcemanager:
     image: apache/hadoop:3
@@ -49,3 +51,7 @@ services:
 networks:
   data-net:
     external: true
+
+volumes:
+  namenode-data:
+  datanode-data:
