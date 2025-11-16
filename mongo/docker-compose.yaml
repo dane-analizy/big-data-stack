@@ -7,7 +7,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
-      - ./data/mongo:/data/db
+      - mongo-data:/data/db
     networks:
       - data-net
 
@@ -28,3 +28,6 @@ services:
 networks:
   data-net:
     external: true
+
+volumes:
+  mongo-data:

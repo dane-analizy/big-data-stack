@@ -11,11 +11,11 @@ services:
       SINGLE_USER_CREDENTIALS_USERNAME: admin
       SINGLE_USER_CREDENTIALS_PASSWORD: admin123
     volumes:
-      - ./data/nifi/flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
-      - ./data/nifi/content_repository:/opt/nifi/nifi-current/content_repository
-      - ./data/nifi/provenance_repository:/opt/nifi/nifi-current/provenance_repository
-      - ./data/nifi/database_repository:/opt/nifi/nifi-current/database_repository
-      - ./data/nifi/state:/opt/nifi/nifi-current/state
+      - nifi-data:/opt/nifi/nifi-current/flowfile_repository
+      - nifi-data:/opt/nifi/nifi-current/content_repository
+      - nifi-data:/opt/nifi/nifi-current/provenance_repository
+      - nifi-data:/opt/nifi/nifi-current/database_repository
+      - nifi-data:/opt/nifi/nifi-current/state
     user: "1000:1000"
     networks:
       - data-net
@@ -23,3 +23,6 @@ services:
 networks:
   data-net:
     external: true
+
+volumes:
+  nifi-data:
