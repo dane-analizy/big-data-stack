@@ -1,0 +1,19 @@
+kafka:
+  host: "broker"
+  port: 9092
+  topic: "test-topic-1"
+  group-id: "my_group"
+  auto-offset-reset: "earliest"
+  enable-auto-commit: true
+
+spark_hadoop:
+  spark_master: "spark://spark-master:7077"
+  hdfs_namenode: "hdfs://namenode:9000"
+
+mongo_db:
+  host: "mongo"
+  port: 27017
+  database: "my_database"
+  collection: "my_collection"
+  user: root
+  password: example

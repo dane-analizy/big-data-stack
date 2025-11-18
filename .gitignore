@@ -1,6 +1,15 @@
 nifi/data/
 mongo/data/
 kafka/data/
-jupyter/project/
 hadoop/data/
 
+.ipynb_checkpoints
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+*.swp
+*.pyc
+__pycache__/
