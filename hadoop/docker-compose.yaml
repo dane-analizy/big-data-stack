@@ -33,6 +33,7 @@ services:
     container_name: resourcemanager
     hostname: resourcemanager
     command: ["yarn", "resourcemanager"]
+    restart: always
     ports:
       - "8088:8088" # YARN Web UI
     networks:
@@ -43,6 +44,7 @@ services:
     container_name: nodemanager
     hostname: nodemanager
     command: ["yarn", "nodemanager"]
+    restart: always
     networks:
       - data-net
 

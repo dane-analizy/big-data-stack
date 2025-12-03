@@ -1,8 +1,9 @@
 services:
   jupyter:
-    image: jupyter/pyspark-notebook:latest
+    image: jupyter/pyspark-notebook:spark-3.5.0
     container_name: jupyter
     command: start-notebook.sh --NotebookApp.token=''
+    restart: always
     ports:
       - "8888:8888"
     volumes:
