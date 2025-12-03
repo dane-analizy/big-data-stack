@@ -14,12 +14,20 @@ services:
     networks:
       - data-net
     user: root
-
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9870"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
+      
   datanode:
     image: apache/hadoop:3
     container_name: datanode
     hostname: datanode
     command: ["/bin/bash", "/init-datanode.sh"]
+    depends_on:
+      namenode:
+        condition: service_healthy
     volumes:
       - datanode-data:/hadoop/dfs/data
       - ./hadoop-config:/opt/hadoop/etc/hadoop
@@ -27,6 +35,11 @@ services:
     networks:
       - data-net
     user: root
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9864"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
 
   resourcemanager:
     image: apache/hadoop:3
@@ -38,6 +51,9 @@ services:
       - "8088:8088" # YARN Web UI
     networks:
       - data-net
+    depends_on:
+      namenode:
+        condition: service_healthy
 
   nodemanager:
     image: apache/hadoop:3
@@ -47,7 +63,10 @@ services:
     restart: always
     networks:
       - data-net
-
+    depends_on:
+      resourcemanager:
+        condition: service_started
+        
 networks:
   data-net:
     external: true
