@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# -----------------------------------------
+# ------------------------------------------
 # HDFS NameNode Initialization Script
-# -----------------------------------------
+# ------------------------------------------
 # This script initializes and starts the HDFS NameNode service.
 # It checks if the NameNode has already been formatted; if not,
 # it formats the NameNode before starting it.

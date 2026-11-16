@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# -----------------------------------------
+# ------------------------------------------
 # HDFS DataNode Initialization Script
-# -----------------------------------------
+# ------------------------------------------
 # This script initializes and starts the HDFS DataNode service.
 # It ensures that the DataNode's data directory is clean,
 # has the correct permissions, and is ready for use.
